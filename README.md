@@ -16,3 +16,22 @@ dependencies {
   implementation 'com.github.GeniusLiu:QuickItemDecorationDemo:1.0.0'
 }
 ```
+
+3、在自己写好的adapter中
+```java
+QuickItemDecoration quickItemDecoration = new QuickItemDecoration(new ItemDivider()
+                .setColor(0xFFFF0000)
+                .setWidth(10)
+                .setMarginLeft(15)
+                .setMarginTop(15)
+                .setMarginBottom(40)
+                .setMarginRight(100)
+                .setItemGridBackgroundColor(0xFF0000FF)
+                , 500
+                , 200,
+                0xFF00FF00, false);
+recyclerView.addItemDecoration(quickItemDecoration);
+```
+
+效果:
+![TextView](https://github.com/GeniusLiu/GestureViewBinder/blob/master/app/src/main/res/drawable/demo.png)
