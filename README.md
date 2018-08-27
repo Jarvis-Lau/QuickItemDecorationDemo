@@ -34,4 +34,4 @@ recyclerView.addItemDecoration(quickItemDecoration);
 ```
 
 效果:
-![TextView](https://github.com/GeniusLiu/GestureViewBinder/blob/master/app/src/main/res/drawable/demo.png)
+![demo](https://github.com/GeniusLiu/QuickItemDecorationDemo/tree/master/app/src/main/res/drawable/demo.png)
