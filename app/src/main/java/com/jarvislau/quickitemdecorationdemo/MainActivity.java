@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recyclerView);
         ArrayList<Entity> entities = new ArrayList<>();
-        for (int i = 0; i < 23; i++) {
+        for (int i = 0; i < 1; i++) {
             entities.add(new Entity("text" + i, "2018-07-" + i));
         }
 

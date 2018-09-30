@@ -287,8 +287,8 @@ public class QuickItemDecoration extends RecyclerView.ItemDecoration {
         if (!reverseLayout) {
             if (childAdapterPosition == 0) {
                 outRect.set(0, recyclerMarginTopPxValue, 0, 0);
-                if (parent.getAdapter().getItemCount() == 1) {
-                    outRect.set(0, recyclerMarginBottomPxValue, 0, recyclerMarginTopPxValue);
+                if (parent.getAdapter().getItemCount() == 1 && isMarginBottomWhenNotMatch) {
+                    outRect.set(0, recyclerMarginTopPxValue, 0, recyclerMarginBottomPxValue);
                 }
             } else if (childAdapterPosition == parent.getAdapter().getItemCount() - 1) {
                 //根据firstCompleteVisibleItem下标，判断item是否超出屏幕（是否能滑动）
