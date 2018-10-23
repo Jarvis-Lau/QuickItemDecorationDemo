@@ -384,13 +384,13 @@ public class QuickItemDecoration extends RecyclerView.ItemDecoration {
             int firstVisibleItemPosition = gridLayoutManager.findFirstCompletelyVisibleItemPosition();
             int lastCompletelyVisibleItemPosition = gridLayoutManager.findLastCompletelyVisibleItemPosition();
             if (!reverseLayout) {
-                if (isMarginBottomWhenNotMatch || firstVisibleItemPosition > spanCount) {
+                if (isMarginBottomWhenNotMatch || firstVisibleItemPosition > spanCount - 1) {
                     bottom = recyclerMarginBottomPxValue;
                 } else {
                     bottom = 0;
                 }
             } else {
-                if (isMarginBottomWhenNotMatch || lastCompletelyVisibleItemPosition > spanCount) {
+                if (isMarginBottomWhenNotMatch || lastCompletelyVisibleItemPosition > spanCount - 1) {
                     top = recyclerMarginBottomPxValue;
                 } else {
                     top = 0;
