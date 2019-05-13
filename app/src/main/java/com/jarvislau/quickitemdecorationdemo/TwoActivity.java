@@ -43,6 +43,7 @@ public class TwoActivity extends AppCompatActivity {
         recyclerView.setAdapter(textAdapter);
 
         QuickItemDecoration quickItemDecoration = new QuickItemDecoration();
+        quickItemDecoration.setConfig(new ItemDecorationConfig().create().setRecyclerMarginTop(100).build());
         recyclerView.addItemDecoration(quickItemDecoration);
     }
 
