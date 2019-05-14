@@ -121,12 +121,14 @@ public class QuickItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     private void drawLinearLayoutVertical(Canvas c, boolean reverseLayout, RecyclerView parent) {
-        int realWidth = parent.getChildAt(0).getWidth();
-        c.drawRect(getItemDecorationConfig().getItemDivider().getMarginLeft(), 0, realWidth - getItemDecorationConfig().getItemDivider().getMarginRight(), parent.getHeight(), getItemDecorationConfig().getItemDivider().getPaint());
-        c.drawRect(0, 0, getItemDecorationConfig().getItemDivider().getMarginLeft(), parent.getHeight(), paintItemBackground);
-        c.drawRect(realWidth - getItemDecorationConfig().getItemDivider().getMarginRight(), 0, realWidth, parent.getHeight(), paintItemBackground);
         int itemCount = parent.getAdapter().getItemCount();
+        int realWidth = parent.getChildAt(0).getWidth();
         LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
+        if (!getItemDecorationConfig().getIgnoreViewIds().contains(layoutManager.findViewByPosition(0).getId())) {
+            c.drawRect(getItemDecorationConfig().getItemDivider().getMarginLeft(), 0, realWidth - getItemDecorationConfig().getItemDivider().getMarginRight(), parent.getHeight(), getItemDecorationConfig().getItemDivider().getPaint());
+            c.drawRect(0, 0, getItemDecorationConfig().getItemDivider().getMarginLeft(), parent.getHeight(), paintItemBackground);
+            c.drawRect(realWidth - getItemDecorationConfig().getItemDivider().getMarginRight(), 0, realWidth, parent.getHeight(), paintItemBackground);
+        }
         if (itemCount == 1) {
             if (!getItemDecorationConfig().getIgnoreViewIds().contains(layoutManager.findViewByPosition(0).getId())) {
                 View view = parent.getChildAt(0);
@@ -166,11 +168,13 @@ public class QuickItemDecoration extends RecyclerView.ItemDecoration {
     private void drawLinearLayoutHorizontal(Canvas c, boolean reverseLayout, RecyclerView parent) {
         if (parent.getAdapter().getItemCount() > 0) {
             int realHeight = parent.getChildAt(0).getHeight();
-            c.drawRect(0, getItemDecorationConfig().getItemDivider().getMarginTop(), parent.getWidth(), realHeight - getItemDecorationConfig().getItemDivider().getMarginBottom(), getItemDecorationConfig().getItemDivider().getPaint());
-            c.drawRect(0, 0, parent.getWidth(), getItemDecorationConfig().getItemDivider().getMarginTop(), paintItemBackground);
-            c.drawRect(0, realHeight - getItemDecorationConfig().getItemDivider().getMarginBottom(), parent.getWidth(), realHeight, paintItemBackground);
-            int itemCount = parent.getAdapter().getItemCount();
             LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
+            if (!getItemDecorationConfig().getIgnoreViewIds().contains(layoutManager.findViewByPosition(0).getId())) {
+                c.drawRect(0, getItemDecorationConfig().getItemDivider().getMarginTop(), parent.getWidth(), realHeight - getItemDecorationConfig().getItemDivider().getMarginBottom(), getItemDecorationConfig().getItemDivider().getPaint());
+                c.drawRect(0, 0, parent.getWidth(), getItemDecorationConfig().getItemDivider().getMarginTop(), paintItemBackground);
+                c.drawRect(0, realHeight - getItemDecorationConfig().getItemDivider().getMarginBottom(), parent.getWidth(), realHeight, paintItemBackground);
+            }
+            int itemCount = parent.getAdapter().getItemCount();
             for (int i = 0; i < itemCount; i++) {
                 if (!getItemDecorationConfig().getIgnoreViewIds().contains(layoutManager.findViewByPosition(i).getId())) {
                     View view = parent.getChildAt(i);
@@ -268,7 +272,8 @@ public class QuickItemDecoration extends RecyclerView.ItemDecoration {
                                                     boolean reverseLayout, RecyclerView parent, View view) {
         int childAdapterPosition = parent.getChildAdapterPosition(view);
         LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
-        if (!getItemDecorationConfig().getIgnoreViewIds().contains(layoutManager.findViewByPosition(childAdapterPosition).getId())) {
+        int position = layoutManager.getPosition(view);
+        if (!getItemDecorationConfig().getIgnoreViewIds().contains(layoutManager.findViewByPosition(position).getId())) {
             int firstCompletelyVisibleItemPosition = layoutManager.findFirstCompletelyVisibleItemPosition();
             //正序item
             if (!reverseLayout) {

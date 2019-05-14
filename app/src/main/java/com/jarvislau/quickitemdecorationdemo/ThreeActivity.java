@@ -34,8 +34,8 @@ public class ThreeActivity extends AppCompatActivity {
 
         ThreeAdapter threeAdapter = new ThreeAdapter(null);
         View inflate = LayoutInflater.from(this).inflate(R.layout.empty, null, false);
-        threeAdapter.setEmptyView(inflate);
-        threeAdapter.getEmptyView().setId(1);
+        /*threeAdapter.setEmptyView(inflate);
+        threeAdapter.getEmptyView().setId(1);*/
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(threeAdapter);
         QuickItemDecoration quickItemDecoration = new QuickItemDecoration();
