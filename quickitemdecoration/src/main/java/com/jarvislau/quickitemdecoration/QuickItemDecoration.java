@@ -124,7 +124,7 @@ public class QuickItemDecoration extends RecyclerView.ItemDecoration {
         int itemCount = parent.getAdapter().getItemCount();
         int realWidth = parent.getChildAt(0).getWidth();
         LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
-        if (!getItemDecorationConfig().getIgnoreViewIds().contains(layoutManager.findViewByPosition(0).getId())) {
+        if (layoutManager.findViewByPosition(0) == null || !getItemDecorationConfig().getIgnoreViewIds().contains(layoutManager.findViewByPosition(0).getId())) {
             c.drawRect(getItemDecorationConfig().getItemDivider().getMarginLeft(), 0, realWidth - getItemDecorationConfig().getItemDivider().getMarginRight(), parent.getHeight(), getItemDecorationConfig().getItemDivider().getPaint());
             c.drawRect(0, 0, getItemDecorationConfig().getItemDivider().getMarginLeft(), parent.getHeight(), paintItemBackground);
             c.drawRect(realWidth - getItemDecorationConfig().getItemDivider().getMarginRight(), 0, realWidth, parent.getHeight(), paintItemBackground);
@@ -169,7 +169,7 @@ public class QuickItemDecoration extends RecyclerView.ItemDecoration {
         if (parent.getAdapter().getItemCount() > 0) {
             int realHeight = parent.getChildAt(0).getHeight();
             LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
-            if (!getItemDecorationConfig().getIgnoreViewIds().contains(layoutManager.findViewByPosition(0).getId())) {
+            if (layoutManager.findViewByPosition(0) == null || !getItemDecorationConfig().getIgnoreViewIds().contains(layoutManager.findViewByPosition(0).getId())) {
                 c.drawRect(0, getItemDecorationConfig().getItemDivider().getMarginTop(), parent.getWidth(), realHeight - getItemDecorationConfig().getItemDivider().getMarginBottom(), getItemDecorationConfig().getItemDivider().getPaint());
                 c.drawRect(0, 0, parent.getWidth(), getItemDecorationConfig().getItemDivider().getMarginTop(), paintItemBackground);
                 c.drawRect(0, realHeight - getItemDecorationConfig().getItemDivider().getMarginBottom(), parent.getWidth(), realHeight, paintItemBackground);
